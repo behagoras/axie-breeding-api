@@ -1,13 +1,9 @@
 {
   "name": "vercel-typescript",
   "version": "0.0.1",
-  "description": "vercel-typescript initialised with create-express-typescript-application.",
-  "main": "src/index.ts",
+  "description": "Typescript project in vercel serverless functions",
+  "main": "api/index.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "node ./build/src/index.js",
-    "dev": "ts-node ./src/index.ts",
-    "dev:nodemon": "nodemon -w src -e ts,json -x ts-node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -27,6 +23,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "@vercel/node": "^1.12.1",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",

@@ -18,7 +18,6 @@ app.post(`${axiesPath}/all`, async (req: Request, res: Response) => {
     Tail?: PartGene;
     species?: string[];
   }
-  console.log('file: all.ts ~ line 18 ~ app.post ~ body', body)
   const response = await getAllPossibleAxies(body, body)
   const filteredAxies = filterDuplicates(response)
   const pagination: Pagination = {

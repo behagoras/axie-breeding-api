@@ -1,15 +1,11 @@
 import { PartGene } from 'agp-npm/dist/models/part'
-import express, { Request, Response, Router } from 'express'
+import { Request, Response, Router } from 'express'
 import { BASE_URL } from '../../constants/router.constants'
 import getAllPossibleAxies from '../../services/getAllPossibleAxies'
 import getAxies from '../../services/getAxies'
 import { Pagination } from '../../types/pagination.types'
+import app from '../../constants/app'
 import filterDuplicates from '../../utils/filterDuplicates'
-
-const app = express()
-app.use(express.urlencoded({
-  extended: true
-}))
 
 // Export module for registering router in express app
 export const router: Router = Router()

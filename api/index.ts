@@ -1,8 +1,6 @@
-import express, { Request, Response } from 'express'
+import { Request, Response } from 'express'
 import { BASE_URL } from '../constants/router.constants'
-// import { getFormattedRoutes } from '../services/server.status.service'
-
-const app = express()
+import app from '../constants/app'
 
 app.get(`${BASE_URL}`, (_: Request, res: Response) => {
   const apisRoute = '/api/apis'

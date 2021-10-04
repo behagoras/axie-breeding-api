@@ -1,14 +1,11 @@
 import { PartGene } from 'agp-npm/dist/models/part'
-import express, { Request, Response, Router } from 'express'
+import { Request, Response, Router } from 'express'
 import { BASE_URL } from '../../constants/router.constants'
 import getAllPossibleAxies from '../../services/getAllPossibleAxies'
 import { Pagination } from '../../types/pagination.types'
+import app from '../../constants/app'
 import filterDuplicates from '../../utils/filterDuplicates'
 
-const app = express()
-app.use(express.urlencoded({ extended: true }))
-
-// Export module for registering router in express app
 export const router: Router = Router()
 
 const axiesPath = BASE_URL + '/axies'
@@ -21,6 +18,7 @@ app.post(`${axiesPath}/all`, async (req: Request, res: Response) => {
     Tail?: PartGene;
     species?: string[];
   }
+  console.log('file: all.ts ~ line 18 ~ app.post ~ body', body)
   const response = await getAllPossibleAxies(body, body)
   const filteredAxies = filterDuplicates(response)
   const pagination: Pagination = {

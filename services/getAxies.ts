@@ -32,11 +32,10 @@ export const getAxies: GetAxiesRequest = async (include, _parts, omit): Promise<
     .ax0
     .results
     .map((plainAxie) => {
-      // if (plainAxie.genes.length === 0) return null;
       const genes = new AxieGene(plainAxie.genes)
       const breakdownPurity = calculateBreakdownPurity(
         genes,
-        { Back, Horn, Mouth, Tail, ...omit }
+        { Back, Horn, Mouth, Tail }
       )
       const purity = breakdownPurity.purity
       return {

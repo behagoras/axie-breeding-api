@@ -1,4 +1,5 @@
 {
   "version": 2,
-  "builds": []
+  "builds": [],
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
 }

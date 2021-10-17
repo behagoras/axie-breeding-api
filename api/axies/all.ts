@@ -1,10 +1,12 @@
 import { PartGene } from 'agp-npm/dist/models/part'
 import { Request, Response, Router } from 'express'
+import app from '../../constants/app'
 import { BASE_URL } from '../../constants/router.constants'
 import getAllPossibleAxies from '../../services/getAllPossibleAxies'
+import { ResultFormat } from '../../types/axies.types'
 import { Pagination } from '../../types/pagination.types'
-import app from '../../constants/app'
 import filterDuplicates from '../../utils/filterDuplicates'
+import { formatAxiesMinimal } from '../../utils/formatAxies'
 
 export const router: Router = Router()
 
@@ -18,8 +20,12 @@ app.post(`${axiesPath}/all`, async (req: Request, res: Response) => {
     Tail?: PartGene;
     species?: string[];
   }
+  const { format = 'minimal' } = req.query as {format:ResultFormat}
   const response = await getAllPossibleAxies(body, body)
   const filteredAxies = filterDuplicates(response)
+  const formattedAxies = format === 'minimal'
+    ? formatAxiesMinimal(filteredAxies)
+    : filteredAxies
   const pagination: Pagination = {
     total: filteredAxies.length,
     pages: 1,
@@ -29,7 +35,7 @@ app.post(`${axiesPath}/all`, async (req: Request, res: Response) => {
   }
   res.status(200).json({
     pagination,
-    axies: filteredAxies
+    axies: formattedAxies
   })
 })
 

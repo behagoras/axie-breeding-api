@@ -1,5 +1,5 @@
-import { AxieGene } from 'agp-npm/dist/axie-gene';
-import { PartGene } from 'agp-npm/dist/models/part';
+import { AxieGene } from 'agp-npm/dist/axie-gene'
+import { PartGene } from 'agp-npm/dist/models/part'
 
 export enum AxieTypes {
   PLANT = 'plant',
@@ -43,33 +43,41 @@ export interface Card {
 
 export const TYPES: Record<AxieTypes, Type> = {
   plant: {
-    color: 'rgb(108, 192, 0)',
+    color: 'rgb(108, 192, 0)'
   },
   aquatic: {
-    color: 'rgb(0, 184, 206)',
+    color: 'rgb(0, 184, 206)'
   },
   bug: {
-    color: 'rgb(255, 83, 65)',
+    color: 'rgb(255, 83, 65)'
   },
   bird: {
-    color: 'rgb(255, 139, 189)',
+    color: 'rgb(255, 139, 189)'
   },
   beast: {
-    color: 'rgb(255, 184, 18)',
+    color: 'rgb(255, 184, 18)'
   },
   reptile: {
-    color: 'rgb(200, 138, 224)',
+    color: 'rgb(200, 138, 224)'
   },
   dusk: {
-    color: 'rgb(0, 0, 0)',
+    color: 'rgb(0, 0, 0)'
   },
   dawn: {
-    color: 'rgb(0, 0, 0)',
+    color: 'rgb(0, 0, 0)'
   },
   mech: {
-    color: 'rgb(0, 0, 0)',
-  },
-};
+    color: 'rgb(0, 0, 0)'
+  }
+}
+
+export interface BreakdownPurity {
+  back: number;
+  mouth: number;
+  horn: number;
+  tail: number;
+  purity: number;
+}
 
 export interface Axie {
   id: string;
@@ -93,16 +101,6 @@ export interface GeneSearchProps {
   toPrice?: string;
 }
 
-export interface BreakdownPurity {
-  back: number;
-  mouth: number;
-  horn: number;
-  tail: number;
-  purity: number;
-}
-
-
-
 export interface Auction {
   currentPrice: string;
 }
@@ -122,3 +120,5 @@ export type PlainAxieResult= {
     }
   }
 }
+
+export type ResultFormat = 'minimal' |'full';

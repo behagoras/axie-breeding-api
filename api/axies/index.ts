@@ -6,6 +6,8 @@ import getAxies from '../../services/getAxies'
 import { Pagination } from '../../types/pagination.types'
 import app from '../../constants/app'
 import filterDuplicates from '../../utils/filterDuplicates'
+import { ResultFormat } from '../../types/axies.types'
+import { formatAxiesMinimal } from '../../utils/formatAxies'
 
 // Export module for registering router in express app
 export const router: Router = Router()
@@ -24,7 +26,11 @@ app.post(`${axiesPath}`, async (req, res) => {
     Tail?: PartGene;
     species?: string[];
   }
+  const { format = 'minimal' } = req.query as {format:ResultFormat}
   const axies = await getAxies(body, body)
+  const formattedAxies = format === 'minimal'
+    ? formatAxiesMinimal(axies)
+    : axies
   const pagination: Pagination = {
     total: axies.length,
     pages: 1,
@@ -34,7 +40,7 @@ app.post(`${axiesPath}`, async (req, res) => {
   }
   res.status(200).json({
     pagination,
-    axies
+    axies: formattedAxies
   })
 })
 
@@ -46,8 +52,12 @@ app.post(`${axiesPath}/all`, async (req:Request, res:Response) => {
     Tail?: PartGene;
     species?: string[];
   }
+  const { format = 'minimal' } = req.query as {format:ResultFormat}
   const response = await getAllPossibleAxies(body, body)
   const filteredAxies = filterDuplicates(response)
+  const formattedAxies = format === 'minimal'
+    ? formatAxiesMinimal(filteredAxies)
+    : filteredAxies
   const pagination: Pagination = {
     total: filteredAxies.length,
     pages: 1,
@@ -57,7 +67,7 @@ app.post(`${axiesPath}/all`, async (req:Request, res:Response) => {
   }
   res.status(200).json({
     pagination,
-    axies: filteredAxies
+    axies: formattedAxies
   })
 })
 

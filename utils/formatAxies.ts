@@ -33,20 +33,18 @@ export function formatAxiesMinimal (axies:Axie[]) {
   return axies.map(axie => ({
     id: axie.id,
     genes: formatGeneMinimal(axie.genes),
+    _genes: axie._genes,
     price: axie.price,
     purity: axie.purity,
     breakdownPurity: axie.breakdownPurity
   }))
 }
 
-export function formatJustGenes (gene:AxieGene) {
-  return gene.geneBinGroup
-}
-
-export function formatAxiesJustGenes (axies:Axie[]) {
+export function formatAxiesplainGenes (axies:Axie[]) {
   return axies.map(axie => ({
     id: axie.id,
-    genes: formatJustGenes(axie.genes),
+    genes: axie._genes,
+    _genes: axie._genes,
     price: axie.price,
     purity: axie.purity,
     breakdownPurity: axie.breakdownPurity
@@ -57,8 +55,8 @@ export function formatAxies (format:ResultFormat, axies:Axie[]) {
   switch (format) {
     case 'full':
       return axies
-    case 'justGenes':
-      return formatAxiesJustGenes(axies)
+    case 'plainGenes':
+      return formatAxiesplainGenes(axies)
     case 'minimal':
       return formatAxiesMinimal(axies)
     default:

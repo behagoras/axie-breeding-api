@@ -82,6 +82,7 @@ export interface BreakdownPurity {
 export interface Axie {
   id: string;
   genes: AxieGene;
+  _genes:string;
   price: string;
   purity: number;
   breakdownPurity: BreakdownPurity;
@@ -121,4 +122,4 @@ export type PlainAxieResult= {
   }
 }
 
-export type ResultFormat = 'minimal' |'full'|'justGenes';
+export type ResultFormat = 'minimal' |'full'|'plainGenes';

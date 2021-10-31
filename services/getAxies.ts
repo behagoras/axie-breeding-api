@@ -32,7 +32,8 @@ export const getAxies: GetAxiesRequest = async (include, _parts, omit): Promise<
     .ax0
     .results
     .map((plainAxie) => {
-      const genes = new AxieGene(plainAxie.genes)
+      const _genes = plainAxie.genes
+      const genes = new AxieGene(_genes)
       const breakdownPurity = calculateBreakdownPurity(
         genes,
         { Back, Horn, Mouth, Tail }
@@ -42,6 +43,7 @@ export const getAxies: GetAxiesRequest = async (include, _parts, omit): Promise<
         id: plainAxie.id,
         price: plainAxie.auction.currentPrice,
         genes,
+        _genes,
         purity,
         breakdownPurity: breakdownPurity as BreakdownPurity
       }

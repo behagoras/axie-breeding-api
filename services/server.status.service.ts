@@ -1,13 +1,4 @@
-// import config from '../../../config.json'
 import { Express } from 'express'
-
-// ts-ignore
-// const app = Object.values(_app).reduce((acc:Express, curr:Express) => {
-//   return { ...acc, ...curr }
-// }, {} as Express)
-
-// const port = Number(process.env.PORT || config.PORT || 8080)
-// const domain = process.env.HOST || config.HOST || 'localhost'
 
 export const getRoutes = (apps:Express[]): Array<any> => {
   let route: any

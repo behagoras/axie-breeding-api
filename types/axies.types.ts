@@ -121,4 +121,4 @@ export type PlainAxieResult= {
   }
 }
 
-export type ResultFormat = 'minimal' |'full';
+export type ResultFormat = 'minimal' |'full'|'justGenes';

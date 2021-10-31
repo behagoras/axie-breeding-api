@@ -1,7 +1,7 @@
 import { AxieGene } from 'agp-npm/dist/axie-gene'
 import { Cls } from 'agp-npm/dist/models/cls'
 import { Part, PartGene } from 'agp-npm/dist/models/part'
-import { Axie } from '../types/axies.types'
+import { Axie, ResultFormat } from '../types/axies.types'
 
 function mapPartGenesMinimal (part:Part) {
   return Object.entries(part)
@@ -37,4 +37,31 @@ export function formatAxiesMinimal (axies:Axie[]) {
     purity: axie.purity,
     breakdownPurity: axie.breakdownPurity
   }))
+}
+
+export function formatJustGenes (gene:AxieGene) {
+  return gene.geneBinGroup
+}
+
+export function formatAxiesJustGenes (axies:Axie[]) {
+  return axies.map(axie => ({
+    id: axie.id,
+    genes: formatJustGenes(axie.genes),
+    price: axie.price,
+    purity: axie.purity,
+    breakdownPurity: axie.breakdownPurity
+  }))
+}
+
+export function formatAxies (format:ResultFormat, axies:Axie[]) {
+  switch (format) {
+    case 'full':
+      return axies
+    case 'justGenes':
+      return formatAxiesJustGenes(axies)
+    case 'minimal':
+      return formatAxiesMinimal(axies)
+    default:
+      return formatAxiesMinimal(axies)
+  }
 }

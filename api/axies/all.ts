@@ -6,7 +6,7 @@ import getAllPossibleAxies from '../../services/getAllPossibleAxies'
 import { ResultFormat } from '../../types/axies.types'
 import { Pagination } from '../../types/pagination.types'
 import filterDuplicates from '../../utils/filterDuplicates'
-import { formatAxiesMinimal } from '../../utils/formatAxies'
+import { formatAxies } from '../../utils/formatAxies'
 
 export const router: Router = Router()
 
@@ -23,9 +23,7 @@ app.post(`${axiesPath}/all`, async (req: Request, res: Response) => {
   const { format = 'minimal' } = req.query as {format:ResultFormat}
   const response = await getAllPossibleAxies(body, body)
   const filteredAxies = filterDuplicates(response)
-  const formattedAxies = format === 'minimal'
-    ? formatAxiesMinimal(filteredAxies)
-    : filteredAxies
+  const formattedAxies = formatAxies(format, filteredAxies)
   const pagination: Pagination = {
     total: filteredAxies.length,
     pages: 1,

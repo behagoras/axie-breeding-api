@@ -11,7 +11,11 @@ const endpoint = 'https://axieinfinity.com/graphql-server-v2/graphql'
 const breedCount = [0]
 
 export const getAxies: GetAxiesRequest = async (include, _parts, omit): Promise<Axie[]> => {
-  const { Back, Horn, Mouth, Tail } = _parts
+  const Back = _parts?.Back
+  const Mouth = _parts?.Mouth
+  const Horn = _parts?.Horn
+  const Tail = _parts?.Tail
+
   const parts = getParts({
     Back: include.Back,
     Horn: include.Horn,

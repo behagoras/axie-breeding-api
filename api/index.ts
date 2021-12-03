@@ -7,5 +7,10 @@ app.get(`${BASE_URL}`, (_: Request, res: Response) => {
   res.setHeader('Content-Type', 'text/html')
   res.status(200).send(`Server is running\n<br>Watcho our routes in <a href="${apisRoute}">${apisRoute}</a>`)
 })
+app.post(`${BASE_URL}`, (_: Request, res: Response) => {
+  const apisRoute = '/api/apis'
+  res.setHeader('Content-Type', 'text/html')
+  res.status(200).send(`Server is running\n<br>Watcho our routes in <a href="${apisRoute}">${apisRoute}</a>`)
+})
 
 export default app
